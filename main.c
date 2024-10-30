@@ -1,8 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+#define MAX_TASKS 100
+#define TITLE_LEN 100
+#define DESC_LEN 256
+
+typedef struct {
+    char title[TITLE_LEN];
+    char description[DESC_LEN];
+    char dueDate[11]; // Format: YYYY-MM-DD
+    char priority[10]; // "High" or "Low"
+} Task;
+
+Task tasks[MAX_TASKS];
+int taskCount = 0;    //for Keep tracking the current number of tasks. ---> indicates how many tasks have been added to the tasks array.
+
+void addTask() {
+    if (taskCount >= MAX_TASKS) {        /*This prevents adding more tasks than the array can hold, which would cause memory overflow and possibly crash the program.*/
+        printf("Task list is full!\n");
+        return;
+    }
+
+    Task newTask;// new task
+    printf("Enter task title: ");
+    scanf(" %[^\n]", newTask.title);
+    printf("Enter task description: ");
+    scanf(" %[^\n]", newTask.description);
+    printf("Enter due date (YYYY-MM-DD): ");
+    scanf(" %[^\n]", newTask.dueDate);
+    printf("Enter priority (High/Low): ");
+    scanf(" %[^\n]", newTask.priority);
+
+    tasks[taskCount++] = newTask; // Adds the newly created newTask to the tasks array and updates taskCount.
+    printf("Task added successfully!\n");
+}
+
+
 int main()
 {
-    printf("Hello world!\n");
+
     return 0;
 }
