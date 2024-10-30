@@ -106,3 +106,20 @@ void deleteTask() {
     taskCount--;
     printf("Task deleted successfully!\n");
 }
+
+void filterTasks() {
+    char priority[10];
+    printf("Enter priority to filter (High/Low): ");
+    scanf(" %[^\n]", priority);
+
+    printf("\nFiltered Tasks:\n");
+    for (int i = 0; i < taskCount; i++) {
+        if (strcmp(tasks[i].priority, priority) == 0) {
+            printf("Task %d:\n", i + 1);
+            printf("  Title: %s\n", tasks[i].title);
+            printf("  Description: %s\n", tasks[i].description);
+            printf("  Due Date: %s\n", tasks[i].dueDate);
+            printf("  Priority: %s\n\n", tasks[i].priority);
+        }
+    }
+}
