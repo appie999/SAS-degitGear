@@ -87,3 +87,22 @@ void modifyTask() {
 
     printf("Task modified successfully!\n");
 }
+
+void deleteTask() {
+    int taskIndex;
+    displayTasks();
+
+    printf("Enter the task number to delete: ");
+    scanf("%d", &taskIndex);
+
+    if (taskIndex < 1 || taskIndex > taskCount) {
+        printf("Invalid task number.\n");
+        return;
+    }
+
+    for (int i = taskIndex - 1; i < taskCount - 1; i++) {
+        tasks[i] = tasks[i + 1];
+    }
+    taskCount--;
+    printf("Task deleted successfully!\n");
+}
