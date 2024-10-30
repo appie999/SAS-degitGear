@@ -36,6 +36,23 @@ void addTask() {
     printf("Task added successfully!\n");
 }
 
+ // This function displays all tasks in the tasks array.
+void displayTasks() {
+    if (taskCount == 0) {
+        printf("No tasks available.\n");
+        return;
+    }
+
+    printf("\nList of Tasks:\n");
+    for (int i = 0; i < taskCount; i++) {
+        printf("Task %d:\n", i + 1);
+        printf("  Title: %s\n", tasks[i].title);
+        printf("  Description: %s\n", tasks[i].description);
+        printf("  Due Date: %s\n", tasks[i].dueDate);
+        printf("  Priority: %s\n\n", tasks[i].priority);
+    }
+}
+
 
 int main()
 {
