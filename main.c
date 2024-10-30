@@ -123,3 +123,13 @@ void filterTasks() {
         }
     }
 }
+
+void displayMenu() {
+    printf("\nTask Management Application\n");
+    printf("1. Add Task\n");
+    printf("2. Display Tasks\n");
+    printf("3. Modify Task\n");
+    printf("4. Delete Task\n");
+    printf("5. Filter Tasks\n");
+    printf("6. Exit\n");
+}
