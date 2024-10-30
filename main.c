@@ -53,9 +53,37 @@ void displayTasks() {
     }
 }
 
+void modifyTask() {
+    int taskIndex;
+    displayTasks();
 
-int main()
-{
+    printf("Enter the task number to modify: ");
+    scanf("%d", &taskIndex);
 
-    return 0;
+    if (taskIndex < 1 || taskIndex > taskCount) {
+        printf("Invalid task number.\n");
+        return;
+    }
+
+    Task *task = &tasks[taskIndex - 1];
+    printf("Enter new description (or press enter to keep current): ");
+    char input[DESC_LEN];
+    scanf(" %[^\n]", input);
+    if (strlen(input) > 0) {
+        strcpy(task->description, input);
+    }
+
+    printf("Enter new due date (or press enter to keep current): ");
+    scanf(" %[^\n]", input);
+    if (strlen(input) > 0) {
+        strcpy(task->dueDate, input);
+    }
+
+    printf("Enter new priority (or press enter to keep current): ");
+    scanf(" %[^\n]", input);
+    if (strlen(input) > 0) {
+        strcpy(task->priority, input);
+    }
+
+    printf("Task modified successfully!\n");
 }
