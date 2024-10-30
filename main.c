@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 #define MAX_TASKS 100
@@ -44,7 +45,8 @@ void displayTasks() {
     }
 
     printf("\nList of Tasks:\n");
-    for (int i = 0; i < taskCount; i++) {
+     int i;
+    for ( i = 0 ; i < taskCount; i++) {
         printf("Task %d:\n", i + 1);
         printf("  Title: %s\n", tasks[i].title);
         printf("  Description: %s\n", tasks[i].description);
@@ -55,6 +57,7 @@ void displayTasks() {
 
 void modifyTask() {
     int taskIndex;
+
     displayTasks();
 
     printf("Enter the task number to modify: ");
@@ -69,7 +72,8 @@ void modifyTask() {
     printf("Enter new description (or press enter to keep current): ");
     char input[DESC_LEN];
     scanf(" %[^\n]", input);
-    if (strlen(input) > 0) {
+    int len = strlen(input);
+    if (len > 0) {
         strcpy(task->description, input);
     }
 
@@ -91,6 +95,7 @@ void modifyTask() {
 void deleteTask() {
     int taskIndex;
     displayTasks();
+    int i;
 
     printf("Enter the task number to delete: ");
     scanf("%d", &taskIndex);
@@ -100,36 +105,31 @@ void deleteTask() {
         return;
     }
 
-    for (int i = taskIndex - 1; i < taskCount - 1; i++) {
+    for ( i = taskIndex - 1; i < taskCount - 1; i++) {
         tasks[i] = tasks[i + 1];
     }
     taskCount--;
     printf("Task deleted successfully!\n");
 }
 
-void filterTasks() {
-    char priority[10];
-    printf("Enter priority to filter (High/Low): ");
-    scanf(" %[^\n]", priority);
+int main() {
+    int choice;
 
-    printf("\nFiltered Tasks:\n");
-    for (int i = 0; i < taskCount; i++) {
-        if (strcmp(tasks[i].priority, priority) == 0) {
-            printf("Task %d:\n", i + 1);
-            printf("  Title: %s\n", tasks[i].title);
-            printf("  Description: %s\n", tasks[i].description);
-            printf("  Due Date: %s\n", tasks[i].dueDate);
-            printf("  Priority: %s\n\n", tasks[i].priority);
+    do {
+        displayMenu();
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: addTask(); break;
+            case 2: displayTasks(); break;
+            case 3: modifyTask(); break;
+            case 4: deleteTask(); break;
+            case 5: filterTasks(); break;
+            case 6: printf("Exiting the application.\n"); break;
+            default: printf("Invalid choice. Please try again.\n");
+
+
         }
-    }
-}
+    } while (choice != 6);
 
-void displayMenu() {
-    printf("\nTask Management Application\n");
-    printf("1. Add Task\n");
-    printf("2. Display Tasks\n");
-    printf("3. Modify Task\n");
-    printf("4. Delete Task\n");
-    printf("5. Filter Tasks\n");
-    printf("6. Exit\n");
-}
